@@ -1,4 +1,5 @@
-import events = require('events');
+import { EventEmitter } from 'events';
+import { AccessManager } from 'twilio-common';
 
 declare namespace Twilio.IPMessaging {
   export type ClientLogLevels = 'silent' | 'error' | 'warn' | 'info' | 'debug' | 'trace';
@@ -7,8 +8,8 @@ declare namespace Twilio.IPMessaging {
     logLevel?: ClientLogLevels;
   }
 
-  export class Client extends events.EventEmitter {
-    constructor(accessManager: any, options?: ClientOptions);
+  export class Client extends EventEmitter {
+    constructor(accessManager: AccessManager, options?: ClientOptions);
 
     // properties
     accessManager: any;
@@ -45,7 +46,7 @@ declare namespace Twilio.IPMessaging {
     uniqueName?: string;
   }
 
-  export interface Channel extends events.EventEmitter {
+  export interface Channel extends EventEmitter {
     // properties
     attributes: Object;
     createdBy: string;
@@ -89,7 +90,7 @@ declare namespace Twilio.IPMessaging {
     on(event: 'updated', callback: (channel: Channel) => void): this;
   }
 
-  export interface UserInfo extends events.EventEmitter {
+  export interface UserInfo extends EventEmitter {
     // properties
     identity: string;
     friendlyName: string;
@@ -105,7 +106,7 @@ declare namespace Twilio.IPMessaging {
     on(event: 'updated', callback: () => void): this;
   } 
 
-  export interface Member extends events.EventEmitter {
+  export interface Member extends EventEmitter {
     // properties
     channel: Channel;
     identity: string;
@@ -159,3 +160,7 @@ declare namespace Twilio.IPMessaging {
     prevPage(): Promise<Paginator<T>>;
   }
 }
+
+declare module 'twilio-ip-messaging' {
+  export = Twilio.IPMessaging;
+} 

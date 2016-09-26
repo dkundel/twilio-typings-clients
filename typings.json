@@ -1,5 +1,5 @@
 {
-  "name": "Twilio.IPMessaging",
+  "name": "twilio-ip-messaging",
   "main": "index.d.ts",
   "homepage": "https://www.twilio.com/ip-messaging",
   "version": "",
@@ -8,5 +8,6 @@
   },
   "devDependencies": {
     "blue-tape": "registry:npm/blue-tape#0.2.0+20160723033700"
-  }
+  },
+  "dependencies": {}
 }
